@@ -15,4 +15,5 @@ module.exports = {
             },
         },
     ],
+    pathPrefix: `gatsby-tut-4`
 };
