@@ -1,4 +1,9 @@
+// Restart development server when you make changes to config file
 module.exports = {
+    // Site metadata
+    siteMetadata: {
+        title: `~Title Variable~`,
+    },
     // Tell Gatsby to look for these plugins
     plugins: [
         `gatsby-plugin-glamor`,

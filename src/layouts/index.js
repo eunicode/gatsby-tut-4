@@ -50,7 +50,7 @@ that adds enhancements specific to Gatsby. All props are passed through to React
 Router's Link.
 */
 
-export default ({ children }) => (
+export default ({ children, data }) => (
   <g.Div
     margin={`0 auto`}
     maxWidth={700}
@@ -63,7 +63,7 @@ export default ({ children }) => (
         display={`inline-block`}
         fontStyle={`normal`}
       >
-        Pandas Eating Lots
+        {data.site.siteMetadata.title}
       </g.H3>
     </Link>
     <Link className={linkStyle} to={`/about/`}>
@@ -72,3 +72,13 @@ export default ({ children }) => (
     {children()}
   </g.Div>
 );
+
+export const query = graphql`
+  query LayoutQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
