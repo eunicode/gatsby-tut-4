@@ -6,6 +6,13 @@ module.exports = {
     },
     // Tell Gatsby to look for these plugins
     plugins: [
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `src`,
+                path: `${__dirname}/src/`,
+            },
+        },
         `gatsby-plugin-glamor`,
         {
             resolve: `gatsby-plugin-typography`,
