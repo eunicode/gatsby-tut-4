@@ -24,9 +24,14 @@ export default ({ data }) => {
   );
 };
 
+/* When querying a connection of some type, you can pass a variety of arguments 
+to the query. You can sort and filter nodes, set how many nodes to skip, and 
+choose the limit of how many nodes to retrieve. With this powerful set of 
+operators, we can select any data we want—in the format we need. */
+
 export const query = graphql`
   query IndexQuery {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
       totalCount
       edges {
         node {
