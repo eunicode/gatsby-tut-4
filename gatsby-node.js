@@ -4,9 +4,21 @@ and plugins.
 To implement an API, you export a function with the name of the API from 
 gatsby-node.js */
 
-/* This function will be called by Gatsby whenever a new node is created (or 
-updated). */
+/* Restart development server to see logs in terminal after making edits */
 
-exports.onCreateNode = ({ node }) => {
-    console.log(node.internal.type);
+/* This function will be called by Gatsby whenever a new node is created (or 
+updated). 
+Add slugs for our Markdown pages to MarkdownRemark nodes. */
+
+exports.onCreateNode = ({ node, getNode }) => {
+    // Look only at MarkdownRemark nodes
+    if (node.internal.type === `MarkdownRemark`) {
+        // See newly created nodes logged to the terminal console
+        // console.log(node.internal.type);
+        // Traverse "node graph" to its parent `File` node, bc `File` nodes
+        // contain data about files on disk.
+        const fileNode = getNode(node.parent);
+        // Log relative paths for our Markdown files
+        console.log(`\n`, fileNode.relativePath)
+    }
 };
