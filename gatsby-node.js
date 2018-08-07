@@ -6,6 +6,9 @@ gatsby-node.js */
 
 /* Restart development server to see logs in terminal after making edits */
 
+// Use gatsby-source-filesystem plugin to create slugs from file names
+const { createFilePath } = require(`gatsby-source-filesystem`);
+
 /* This function will be called by Gatsby whenever a new node is created (or 
 updated). 
 Add slugs for our Markdown pages to MarkdownRemark nodes. */
@@ -15,10 +18,15 @@ exports.onCreateNode = ({ node, getNode }) => {
     if (node.internal.type === `MarkdownRemark`) {
         // See newly created nodes logged to the terminal console
         // console.log(node.internal.type);
+
         // Traverse "node graph" to its parent `File` node, bc `File` nodes
         // contain data about files on disk.
-        const fileNode = getNode(node.parent);
+        // const fileNode = getNode(node.parent);
         // Log relative paths for our Markdown files
-        console.log(`\n`, fileNode.relativePath)
+        // console.log(`\n`, fileNode.relativePath)
+
+        // Use function in gatsby-source-filename plugin to find the parent File
+        // node and create the slug.
+        console.log(createFilePath({ node, getNode, basePath: `pages` }))
     }
 };
