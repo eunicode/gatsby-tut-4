@@ -13,7 +13,9 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 updated). 
 Add slugs for our Markdown pages to MarkdownRemark nodes. */
 
-exports.onCreateNode = ({ node, getNode }) => {
+exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
+    const { createNodeField } = boundActionCreators;
+    
     // Look only at MarkdownRemark nodes
     if (node.internal.type === `MarkdownRemark`) {
         // See newly created nodes logged to the terminal console
@@ -26,7 +28,16 @@ exports.onCreateNode = ({ node, getNode }) => {
         // console.log(`\n`, fileNode.relativePath)
 
         // Use function in gatsby-source-filename plugin to find the parent File
-        // node and create the slug.
-        console.log(createFilePath({ node, getNode, basePath: `pages` }))
+        // node and create the slug. 
+        const slug = createFilePath({ node, getNode, basePath: `pages` });
+        // Add slugs to MarkdownRemark nodes. 
+        // Use createNodeField function in Gatsby API. This function allows us 
+        // to create additional fields on nodes created by other plugins.
+        // GraphQL: "node": { "fields": { "slug": "/pandas-and-bananas/" } }
+        createNodeField({
+            node,
+            name: `slug`,
+            value: slug,
+        })
     }
 };
