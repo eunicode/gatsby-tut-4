@@ -10,6 +10,9 @@ export default ({ data }) => {
     );
 };
 
+/* Query data from MarkdownRemark nodes so we can add them to the frontpage or
+blog posts pages */
+
 export const query = graphql`
     query BlogPostQuery($slug: String!) {
         markdownRemark(fields: { slug: { eq: $slug } }) {
