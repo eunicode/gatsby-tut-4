@@ -13,6 +13,7 @@
     "gatsby-link": "^1.6.46",
     "gatsby-plugin-glamor": "^1.6.13",
     "gatsby-plugin-manifest": "^2.0.4",
+    "gatsby-plugin-offline": "^2.0.5",
     "gatsby-plugin-typography": "^1.7.19",
     "gatsby-source-filesystem": "^1.5.39",
     "gatsby-transformer-remark": "^1.7.44",

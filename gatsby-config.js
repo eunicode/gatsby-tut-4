@@ -34,7 +34,8 @@ module.exports = {
                 display: "minimal-ui",
                 icon: "src/images/icon.png", // This path is relative to the root of the site.
             },
-          },
-    ],
+        },
+        'gatsby-plugin-offline' // The manifest plugin must be listed before the offline plugin
+    ], // plugins array
     pathPrefix: `gatsby-tut-4`
 };
